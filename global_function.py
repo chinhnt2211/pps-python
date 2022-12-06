@@ -2,13 +2,30 @@
 def to_string_polynomial(arr):
     result = ""
     n = len(arr)
-    for i in range(n-1):
-        if (result != ""):
-            result = result + " + (" + str(arr[i]) + "x^" + str(n-i-1) + ")"
-        else:
-            result += " (" + str(arr[i]) + "x^" + str(n-i-1) + ")"
+    for i in range(n):
+        if(i == n-1):
+            if(result == ""):
+                result += str(arr[i])
+                break
+            if(arr[i] >= 0):
+                result += " + " + str(arr[i])
+            else:
+                result += " - " + str(abs(arr[i]))
+            break
 
-    result += " + (" + str(arr[n-1]) + ")"
+        if (result ==""):
+            if( arr[i] != 0):
+                result +=  str(arr[i]) + "x^" + str(n-i-1) 
+                continue
+            else:
+                continue
+            
+        if (arr[i] > 0):
+            result += " + " + str(arr[i]) + "x^" + str(n-i-1) 
+        elif(arr[i] == 0):
+            continue
+        else:
+            result += " - " + str(abs(arr[i])) + "x^" + str(n-i-1)
 
     return result
 
@@ -56,5 +73,5 @@ def check_inter_point(arr):
     d = arr[1] - arr[0]
     for i in range(2, len(arr)):
         if(arr[i-1] + d != arr[i]):
-            return True
-    return False
+            return False
+    return True

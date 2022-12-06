@@ -14,6 +14,9 @@ def division(arr, c):
         m = arr_a[i] + arr_b[i-1]*c
         arr_b.append(m)
 
+    if(len(arr_b) == 0):
+        return([0], 0)
+
     return (arr_b[0:len(arr_b)-1] , arr_b[len(arr_b)-1])
 
 # Nhan da thuc voi x - c
@@ -94,17 +97,18 @@ if __name__ == "__main__":
 
     # Input
     # Mảng hệ số của đa thức
-    A = [1, 2, 2]
+    # A = [2, 0, -8, 0, 3, -9, -10, 1]
+    A = [1, -6, -12, 90, 39, -324, -28, 240, 0]
 
     # Hằng số c
-    c = - 2
+    c = 1
     # Dao ham bac n
-    n = 6
+    n = 1
 
     (result_division,r) = division(A, c)
 
 
-    print("Chia da thuc voi x - " + str(c)+ " : ", gf.to_string_polynomial(result_division), " phan du:" + str(r))
+    print("Chia da thuc voi x - " + str(c)+ " : ", gf.to_string_polynomial(result_division), " phan du: " + str(r))
     print()
     print("Nhan da thuc voi x - " + str(c) + " : ", gf.to_string_polynomial(multiplication(A, c)))
     print()
@@ -112,4 +116,4 @@ if __name__ == "__main__":
     print()
     print("Dao ham bac " + str(n) + " da thuc tai " + str(c) + " :", derivative(A,c,n))
     print()
-    print("Nghiem cua phuong trinh la: " , find_roots(A))
+    # print("Nghiem cua phuong trinh la: " , find_roots(A))

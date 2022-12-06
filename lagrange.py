@@ -13,7 +13,8 @@ def find_w(arr):
     return result
 
 
-def lagrange(arr_x, arr_y, f):
+def lagrange(arr_x, arr_y):
+    f= find_w(arr_x)
     n = len(arr_x)
     result = [0 for i in range(n)]
 
@@ -26,19 +27,17 @@ def lagrange(arr_x, arr_y, f):
 
 
 if __name__ == "__main__":
+
+    # Input 
     A = [0, 1, 2, -1, -2, 4, 5, -3]
     B = [8, 18, 172, 16, -84, 16536, 78358, -2098]
-    A.sort()
-    B.sort()
-    w = find_w(A)
 
-    lagrange_arr = lagrange(A, B, w)
-    print(lagrange_arr)
-    print()
+    lagrange_arr = lagrange(A, B)
+    print(gf.to_string_polynomial(lagrange_arr))
 
-    range_x = np.linspace(min(A), max(A))
+    range_x = np.linspace(min(A), max(A),15)
+    plt.scatter(A, B)
     plt.plot(range_x, [horner.value(lagrange_arr, range_x[i]) for i in range(len(range_x))] , 'ro-',  label = 'Larange')
-    plt.plot(A, B,'go-', label= 'Dau vao')
     plt.legend(loc = 'best')
     plt.savefig("lagrange.png")
     # plt.show()
