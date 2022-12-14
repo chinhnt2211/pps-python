@@ -3,8 +3,6 @@ import horner
 import global_function as gf
 
 # Bảng tỉ sai phân
-
-
 def BTSP(arr_y, arr_x):
     result = []
     result.append(arr_y)
@@ -16,9 +14,9 @@ def BTSP(arr_y, arr_x):
     return result
 
 
-# Bảng tỉ sai phân cho newton cách đều
+# Bảng sai phân cho newton cách đều
 # 1 : Sai phân tiến | 0 : Sai phân lùi
-def BTSP_equidistant(arr_y, type_btsp=1):
+def BSP_equidistant(arr_y, type_btsp=1):
     result = []
     result.append(arr_y)
     if (type_btsp == 0):
@@ -53,13 +51,12 @@ def newton_up(arr_y, arr_x):
 
 # Newton tiến cho trường hợp điểm nội suy cách đều
 def newton_equidistant_up(arr_y, arr_x, h):
-    arr_btsp = BTSP_equidistant(arr_y, 1)
+    arr_bsp = BSP_equidistant(arr_y, 1)
     print("----------")
-    print("BTSP Newton mốc cách đều tiến: ", arr_btsp)
+    print("BTSP Newton mốc cách đều tiến: ", arr_bsp)
     result = [arr_y[0]]
-    for i in range(1, len(arr_btsp)):
-        f = [arr_btsp[i][0] / (math.factorial(i) * h**i)
-             ]  # delta y0 / i! * h^i
+    for i in range(1, len(arr_bsp)):
+        f = [arr_bsp[i][0] / (math.factorial(i) * h**i)]  # delta y0 / i! * h^i
         for j in range(0, i):
             f = horner.multiplication(f, arr_x[j])
         result = gf.add_two_polynomial(result, f)
@@ -84,15 +81,15 @@ def newton_down(arr_y, arr_x):
 
 
 def newton_equidistant_down(arr_y, arr_x, h):
-    arr_btsp = BTSP_equidistant(arr_y, 0)
+    arr_bsp = BSP_equidistant(arr_y, 0)
     print("----------")
-    print("BTSP Newton mốc cách đều lùi: ", arr_btsp)
+    print("BTSP Newton mốc cách đều lùi: ", arr_bsp)
     result = [arr_y[0]]
     len_x = len(arr_x)
     result = [arr_y[len(arr_y)-1]]
-    for i in range(1, len(arr_btsp)):
+    for i in range(1, len(arr_bsp)):
         # delta yn / i! * h^i
-        f = [arr_btsp[i][len(arr_btsp[i])-1] / (math.factorial(i) * h**i)]
+        f = [arr_bsp[i][len(arr_bsp[i])-1] / (math.factorial(i) * h**i)]
         for j in range(0, i):
             f = horner.multiplication(f, arr_x[len_x - j - 1])
         result = gf.add_two_polynomial(result, f)
@@ -118,8 +115,11 @@ if __name__ == "__main__":
 
     # Input
     # Y
-    A = [25, 35, 245]
+    A = [ 0, 1, 2, 3 , 4]
     # X
-    B = [-2, 3, 9]
+    B = [ 0.5, 0.731058, 0.880797, 0.952574, 0.982013]
 
-    newton(A, B)
+    print(horner.value(newton_equidistant_down(B, A, 1), 1.5))
+    # newton(A, B)
+
+    

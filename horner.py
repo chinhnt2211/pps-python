@@ -97,8 +97,8 @@ if __name__ == "__main__":
 
     # Input
     # Mảng hệ số của đa thức
-    # A = [2, 0, -8, 0, 3, -9, -10, 1]
-    A = [1, -6, -12, 90, 39, -324, -28, 240, 0]
+    A = [2, 0, -8, 0, 3, -9, -10, 1]
+    # A = [1, -6, -12, 90, 39, -324, -28, 240, 0]
 
     # Hằng số c
     c = 1
@@ -116,4 +116,4 @@ if __name__ == "__main__":
     print()
     print("Dao ham bac " + str(n) + " da thuc tai " + str(c) + " :", derivative(A,c,n))
     print()
-    # print("Nghiem cua phuong trinh la: " , find_roots(A))
+    print("Nghiem cua phuong trinh la: " , find_roots(A))
